@@ -1,0 +1,21 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 50,
+    "modules-left": ["tray"],
+    "modules-center": ["wlr/taskbar"],
+    // "modules-right": ["sway/workspaces", "sway/mode"],
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 40,
+        "icon-theme": "Papirus",
+        "tooltip-format": "{title}",
+        "on-click": "minimize",
+        "on-click-middle": "close",
+        "on-click-right": "activate"
+    },
+    "tray": {
+        "icon-size": 13,
+        "spacing": 10
+    }
+}
