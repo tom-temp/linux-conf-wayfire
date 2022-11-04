@@ -1,10 +1,13 @@
 #!/bin/sh
 
+# set revolution
+
 
 
 chmod +x ~/.config/rofi/*.sh
 chmod +x ~/.config/sway/*.sh
 
+echo "alias set-x11='env WITH_UNIX_BACKEND=x11'" >> /home/$username/.config/zsh/custom_shellapp.zsh
 
 #──────────────────────────────────────────────
 mkdir ~/.tmp
