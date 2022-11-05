@@ -70,20 +70,38 @@ gpasswd -a $username input
 # could use tuigreet
 ##########################################
 
+# xbps-install greetd tuigreet
+# ln -s /etc/sv/greetd /var/service/
+# gpasswd -a _greeter _seatd
+# gpasswd -a _greeter dbus
+# gpasswd -a _greeter input
+
+# # tui
+# cat > /etc/greetd/config.toml <<EOF
+# [terminal]
+# vt = 7
+
+# [default_session]
+# command = "tuigreet --cmd 'dbus-launch --exit-with-session wayfire -c ~/.config/wayfire.ini >> ~/.config/wayfire.log 2>&1'"
+# user = "_greeter"
+# EOF
 
 # set environment
+# 在wayfire启动脚本中修改
 ##########################################
-echo "export WLR_NO_HARDWARE_CURSORS=1"     >> /etc/environment   # virtual-box curssors
-echo "export LIBGL_ALWAYS_SOFTWARE=1"       >> /etc/environment   # virtual-box software
-echo "export QT_QPA_PLATFORM=wayland-egl"   >> /etc/environment   #
-echo "export ELM_DISPLAY=wl"                >> /etc/environment
-echo "export SDL_VIDEODRIVER=wayland"       >> /etc/environment    # SDL
-echo "export CLUTTER_BACKEND=wayland"       >> /etc/environment
-# Session
-echo "export XDG_SESSION_TYPE=wayland"      >> /etc/environment
-echo "export XDG_SESSION_DESKTOP=wayfire"   >> /etc/environment
-echo "export XDG_CURRENT_DESKTOP=wayfire"   >> /etc/environment
-echo "export MOZ_ENABLE_WAYLAND=1"          >> /etc/environment # Wayland firefox
+# echo "export WLR_NO_HARDWARE_CURSORS=1"     >> /etc/environment   # virtual-box curssors
+# echo "export LIBGL_ALWAYS_SOFTWARE=1"       >> /etc/environment   # virtual-box software
+# echo "export QT_QPA_PLATFORM=wayland-egl"   >> /etc/environment   # Qt5-based
+# echo "export ELM_DISPLAY=wl"                >> /etc/environment   # EFL-based
+# echo "export SDL_VIDEODRIVER=wayland"       >> /etc/environment   # SDL-based
+# echo "export GDK_BACKEND=wayland"           >> /etc/environment   # GDK-based
+# echo "export CLUTTER_BACKEND=wayland"       >> /etc/environment   # 
+# echo "export MOZ_ENABLE_WAYLAND=1"          >> /etc/environment   # Wayland firefox
+# # Session
+# echo "export XDG_SESSION_TYPE=wayland"      >> /etc/environment
+# echo "export XDG_SESSION_DESKTOP=wayfire"   >> /etc/environment
+# echo "export XDG_CURRENT_DESKTOP=wayfire"   >> /etc/environment
+
 echo 'export QT_QPA_PLATFORMTHEME=qt5ct'    >> /etc/environment
 
 # dir
@@ -115,7 +133,7 @@ mv ~/.tmp/${1}/* /usr/share/fonts/myfonts/
 # Install_nerd_font FiraCode
 # Install_nerd_font FiraMono
 Install_nerd_font CodeNewRoman
-# Install_nerd_font Hack
+Install_nerd_font Hack
 # Install_nerd_font Go-Mono
 
 mkdir -p /usr/share/fonts/siyuan_cjk
@@ -133,7 +151,7 @@ Install_siyuan_font 08_NotoSansCJKsc
 Install_siyuan_font 09_NotoSansCJKtc
 Install_siyuan_font 13_NotoSansMonoCJKsc
 
-chmod -R 755 /usr/share/fonts/myfonts/
+chmod -R 755 /usr/share/fonts/
 
 xbps-reconfigure -f fontconfig
 rm -r ~/.tmp
