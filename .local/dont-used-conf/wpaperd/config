@@ -1,0 +1,4 @@
+[Virtual-1]
+path = "~/.config/wallpapers/"
+apply-shadow = true
+duration = "6m"
