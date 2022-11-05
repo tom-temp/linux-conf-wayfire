@@ -1,10 +1,10 @@
 configuration {
-  font:                       "Fura Mono Medium 12";
+  font:                       "Iosevka,Iosevka Nerd Font Mono 12";
   show-icons:                 true;
   icon-theme:                 "Papirus";
 }
 * {
-  font:   "Fura Mono Medium 11";
+  font:   "Iosevka,Iosevka Nerd Font Mono 11";
 
   bg0     : #1a1b26;
   bg1     : #1f2335;
