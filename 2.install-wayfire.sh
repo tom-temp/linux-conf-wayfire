@@ -1,31 +1,41 @@
 #!/bin/bash
+export gitproxy=http://github.opsp.eu.org/
 export username=tom
 
 xbps-remove -R grub-i386-efi grub-x86_64-efi grub efibootmgr libefivar lvm2 os-prober thin-provisioning-tools 
 
 xbps-install -S
-xbps-install fuse vsv unzip xz curl wget
+xbps-install fuse vsv unzip xz curl wget p7zip-unrar
 xbps-install linux-headers
 xbps-install seatd elogind mate-polkit
 
 xbps-install mesa mesa-dri # mesa-demos libva-utils
 xbps-install vulkan-loader intel-media-driver mesa-vulkan-intel intel-video-accel # nvidia
-xbps-install glfw-wayland libglvnd # glew nvidia340-libs
+xbps-install glfw-wayland glew libglvnd #  nvidia340-libs
 xbps-install qt5-core gtk+3
 
 # wayfire
-xbps-install wayfire wcm  xorg-server-xwayland
-xbps-install swaylock swaybg swayidle wlogout sway-audio-idle-inhibit # Wbg
-xbps-install qt5-wayland kwayland # weston-xwayland
+xbps-install wayfire wcm  
+xbps-install swaylock swaybg swayidle wlogout sway-audio-idle-inhibit
+xbps-install qt5-wayland kwayland xorg-server-xwayland # weston-xwayland
 xbps-install wlr-randr wdisplays # kanshi
 # wayabr
 xbps-install Waybar
 
+# tools
+xbps-install foot rofi mpv Thunar
+
+# theme
+xbps-install lxappearance qt5-svg qt5ct qt5-styleplugins papirus-icon-theme # xsettingsd
+
+# system tools
+xbps-install pulseaudio pavucontrol #volctl light
+# thunar-archive-plugin file-roller 
 ##########################################################
 
 xbps-install libevdev  # KeyboardState module
 
-xbps-install xdg-utils
+# xbps-install xdg-utils
 
 # xbps-install mako  # dunst # notification daemon
 
@@ -34,16 +44,6 @@ xbps-install xdg-utils
 # xdg-desktop-portal-wlr # screen sharing for wayland
 # brightnessctl # brightness manager
 # libappindicator # tray sway
-
-# system tools
-xbps-install pulseaudio pavucontrol #light
-
-# theme
-xbps-install lxappearance qt5ct qt5-styleplugins xsettingsd papirus-icon-theme
-
-# tools
-xbps-install foot rofi mpv
-xbps-install p7zip-unrar
 
 # application
 xbps-install libgpg-error # clash 客户端需要
@@ -56,6 +56,9 @@ xbps-install libgpg-error # clash 客户端需要
 
 # xbps-install virtualbox-ose-guest
 
+echo "ignorepkg=adwaita-icon-theme" >> /etc/xbps.d/99-ignore.conf
+xbps-remove adwaita-icon-theme
+
 ln -s /etc/sv/seatd     /var/service/
 ln -s /etc/sv/dbus      /var/service/
 ln -s /etc/sv/polkitd   /var/service/
@@ -67,9 +70,10 @@ gpasswd -a $username input
 
 ##########################################
 # display manager
-# could use tuigreet
 ##########################################
 
+# could use  greetd with tuigreet
+##########################################
 # xbps-install greetd tuigreet
 # ln -s /etc/sv/greetd /var/service/
 # gpasswd -a _greeter _seatd
@@ -157,3 +161,55 @@ xbps-reconfigure -f fontconfig
 rm -r ~/.tmp
 
 
+
+
+
+
+
+
+
+
+# , ，分辨率，双屏，浏览器，图片查看，nnn，office，，   剪贴板 截图  vsv proton
+# wofi --show=drun
+# Thunar
+#
+
+
+
+
+# tory commend
+##########################################
+# network-manager-applet
+
+# nm-applet --indicator &
+
+# polkit
+
+
+
+
+
+
+WAYLAND_DISPLAY=alacritty alacritty
+
+
+
+
+
+
+
+# fcitx
+##########################################
+
+
+echo "GTK_IM_MODULE=fcitx" >> ~/.pam_environment
+echo "QT_IM_MODULE=fcitx" >> ~/.pam_environment
+echo "XMODIFIERS=@im=fcitx" >> ~/.pam_environment
+##########################################
+
+xbps-query -Rs tlp
+
+pidof
+
+
+jgmenu 类似于快速启动菜单

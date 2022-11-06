@@ -35,7 +35,8 @@ sudo cp -r  ~/.tmp/Graphite-cursors/*/dist-dark  /usr/share/icons/Graphite-dark-
 sudo mkdir -p /usr/share/sddm/themes/
 sudo cp -r ~/.config/0-root.tmp/sddm/themes/sddm-sugar-candy /usr/share/sddm/themes/
 
-sddm --example-config > ~/.tmp/sddm.conf
+
+cp /etc/sddm.conf  ~/.tmp/sddm.conf
 # sed -ri 's/^CursorTheme=+.*/CursorTheme="Graphite light Cursors"/' ~/.tmp/sddm.conf
 sed -ri 's/^Current=+.*/Current=sddm-sugar-candy/' ~/.tmp/sddm.conf # maldives elarun maya sugar-light
 sed -ri 's/^Numlock=+.*/Numlock=on/'               ~/.tmp/sddm.conf
@@ -43,3 +44,15 @@ sed -ri 's/^MinimumVT=+.*/MinimumVT=7/g'           ~/.tmp/sddm.conf
 sed -ri 's/EnableHiDPI=false/EnableHiDPI=true/g'   ~/.tmp/sddm.conf
 
 sudo cp ~/.tmp/sddm.conf /etc/sddm.conf
+
+
+
+
+
+[Desktop Entry]
+Name=Wayfire
+Exec=wayfire
+TryExec=/opt/wayfire-start.sh
+Icon=
+Type=Application
+DesktopNames=Wayfire

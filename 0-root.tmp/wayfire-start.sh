@@ -15,4 +15,5 @@ export XDG_CURRENT_DESKTOP=wayfire
 
 # export XCURSOR_PATH=/usr/share/icons:~/.local/share/icons
 
-dbus-launch --exit-with-session wayfire -c ~/.config/wayfire.ini >> ~/.config/wayfire.log 2>&1
+# dbus-launch --exit-with-session wayfire -c ~/.config/wayfire.ini >> ~/.config/wayfire.log 2>&1
+wayfire >> ~/.config/wayfire.log 2>&1

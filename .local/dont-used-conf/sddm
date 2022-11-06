@@ -1,0 +1,8 @@
+
+## ./2.install-wayfire.sh
+xbps-install qt5-quickcontrols2 qt5-graphicaleffects sddm  numlockx
+sddm --example-config > /etc/sddm.conf
+sed -i  '/General]/a\GreeterEnvironment=QT_WAYLAND_SHELL_INTEGRATION=layer-shell' /etc/sddm.conf
+sed -i  '/General]/a\DisplayServer=wayland'                                       /etc/sddm.conf
+sed -i  '/Wayland]/a\CompositorCommand=wayfire'                                   /etc/sddm.conf
+ln -s /etc/sv/sddm /var/service/
