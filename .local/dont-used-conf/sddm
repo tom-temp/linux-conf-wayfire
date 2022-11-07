@@ -1,8 +1,23 @@
 
 ## ./2.install-wayfire.sh
-xbps-install qt5-quickcontrols2 qt5-graphicaleffects sddm  numlockx
-sddm --example-config > /etc/sddm.conf
-sed -i  '/General]/a\GreeterEnvironment=QT_WAYLAND_SHELL_INTEGRATION=layer-shell' /etc/sddm.conf
-sed -i  '/General]/a\DisplayServer=wayland'                                       /etc/sddm.conf
-sed -i  '/Wayland]/a\CompositorCommand=wayfire'                                   /etc/sddm.conf
-ln -s /etc/sv/sddm /var/service/
+
+# sddm theme ───────────────────────────────────
+sudo xbps-install qt5-quickcontrols2 qt5-graphicaleffects sddm  numlockx
+sudo ln -s /etc/sv/sddm /var/service/
+
+sddm --example-config > ~/.tmp/sddm.conf
+# sed -ri 's/^CursorTheme=+.*/CursorTheme="Graphite light Cursors"/' ~/.tmp/sddm.conf
+sed -ri 's/^Current=+.*/Current=sddm-sugar-candy/' ~/.tmp/sddm.conf # maldives elarun maya sugar-light
+sed -ri 's/^Numlock=+.*/Numlock=on/'               ~/.tmp/sddm.conf
+sed -ri 's/^MinimumVT=+.*/MinimumVT=7/g'           ~/.tmp/sddm.conf
+sed -ri 's/EnableHiDPI=false/EnableHiDPI=true/g'   ~/.tmp/sddm.conf
+
+# wayland
+sed -i  '/General]/a\GreeterEnvironment=QT_WAYLAND_SHELL_INTEGRATION=layer-shell' ~/.tmp/sddm.conf
+sed -i  '/General]/a\DisplayServer=wayland'                                       ~/.tmp/sddm.conf
+sed -i  '/Wayland]/a\CompositorCommand=wayfire'                                   ~/.tmp/sddm.conf
+
+sudo cp ~/.tmp/sddm.conf /etc/sddm.conf
+
+sudo mkdir -p /usr/share/sddm/themes/
+sudo cp -r ~/.config/0-root.tmp/sddm/themes/sddm-sugar-candy /usr/share/sddm/themes/

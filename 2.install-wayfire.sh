@@ -71,14 +71,15 @@ gpasswd -a $username input
 ##########################################
 # display manager
 ##########################################
+xbps-install greetd
+ln -s /etc/sv/greetd /var/service/
+gpasswd -a _greeter _seatd
+gpasswd -a _greeter dbus
+gpasswd -a _greeter input
 
-# could use  greetd with tuigreet
-##########################################
-# xbps-install greetd tuigreet
-# ln -s /etc/sv/greetd /var/service/
-# gpasswd -a _greeter _seatd
-# gpasswd -a _greeter dbus
-# gpasswd -a _greeter input
+
+# tuigreet ──────────────────────────────────────────
+# xbps-install tuigreet
 
 # # tui
 # cat > /etc/greetd/config.toml <<EOF
@@ -89,6 +90,34 @@ gpasswd -a $username input
 # command = "tuigreet --cmd 'dbus-launch --exit-with-session wayfire -c ~/.config/wayfire.ini >> ~/.config/wayfire.log 2>&1'"
 # user = "_greeter"
 # EOF
+
+# wlgreet ──────────────────────────────────────────
+cp /home/$username/.config/0-root.tmp/bin/wlgreet_x86       /bin/wlgreet
+cp /home/$username/.config/0-root.tmp/bin/wayfire-start.sh  /bin/wayfire-start
+chmod +x /bin/wlgreet
+chmod +x /bin/wayfire-start
+
+cat > /etc/greetd/config.toml <<EOF
+[terminal]
+vt = 7
+
+[default_session]
+command = "wayfire -c /etc/greetd/wayfire.ini"
+user = "_greeter"
+EOF
+
+cat > /etc/greetd/wayfire.ini <<EOF
+[autostart]
+autostart_wf_shell = false
+wlgreet = /usr/bin/wlgreet --command /bin/wayfire-start
+#qtgreet = /usr/bin/qtgreet
+
+[core]
+plugins = autostart
+vheight = 1
+vwidth = 1
+xwayland = false
+EOF
 
 # set environment
 # 在wayfire启动脚本中修改
