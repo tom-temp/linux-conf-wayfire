@@ -44,20 +44,16 @@ $CARGO_HOME/bin/cargo build --release
 sudo cp target/release/wlgreet /usr/local/bin/
 
 # configration ──────────────────────────────────────────
-sudo cp /home/$username/.config/0-root.tmp/bin/wlgreet_x86            /bin/wlgreet
-sudo cp /home/$username/.config/0-root.tmp/bin/wayfire-start.sh       /bin/wayfire-start
-sudo cp /home/$username/.config/0-root.tmp/bin/wayfire-start-greet.sh /bin/wayfire-start-greet
+sudo cp ~/.config/0-root.tmp/bin/wayfire-start.sh       /bin/wayfire-start
+sudo cp ~/.config/0-root.tmp/bin/wayfire-start-greet.sh /bin/wayfire-start-greet
 
-sudo chmod +x /bin/wlgreet
 sudo chmod +x /bin/wayfire-start
 sudo chmod +x /bin/wayfire-start-greet
 
 sudo mkdir -p /usr/share/wallpapers
-sudo cp /home/$username/.config/wallpapers/swaylock2.jpg /usr/share/wallpapers/bg.jpg
+sudo cp ~/.config/wallpapers/swaylock2.jpg /usr/share/wallpapers/bg.jpg
 
-
-
-cat > /etc/greetd/config.toml <<EOF
+cat > $CARGO_HOME/../rust-project/config.toml <<EOF
 [terminal]
 vt = 7
 
@@ -66,21 +62,21 @@ command = "bash /bin/wayfire-start-greet"
 user = "_greeter"
 EOF
 
-cat > /etc/greetd/wayfire.ini <<EOF
+cat > $CARGO_HOME/../rust-project/wayfire.ini <<EOF
 [autostart]
 autostart_wf_shell = false
 wlgreet = /usr/bin/wlgreet --command /bin/wayfire-start
 wallpaper = swaybg -m fill -i /usr/share/wallpapers/bg.jpg
-
+# foot = foot
 #qtgreet = /usr/bin/qtgreet
 
 [core]
-plugins = autostart command
+plugins = autostart
 vheight = 1
 vwidth = 1
 xwayland = false
-
-[command]
-binding_terminal = <super> KEY_ENTER
-command_terminal = foot #alacritty #kitty
 EOF
+sudo cp $CARGO_HOME/../rust-project/config.toml /etc/greetd/config.toml
+sudo cp $CARGO_HOME/../rust-project/wayfire.ini /etc/greetd/wayfire.ini
+rm $CARGO_HOME/../rust-project/config.toml
+rm $CARGO_HOME/../rust-project/wayfire.ini

@@ -2,7 +2,7 @@
 export gitproxy=http://github.opsp.eu.org/
 export username=tom
 
-xbps-remove -R grub-i386-efi grub-x86_64-efi grub efibootmgr libefivar lvm2 os-prober thin-provisioning-tools 
+xbps-remove -R grub-i386-efi grub-x86_64-efi grub efibootmgr libefivar lvm2 os-prober thin-provisioning-tools
 
 xbps-install -S
 xbps-install fuse vsv unzip xz curl wget p7zip-unrar
@@ -15,7 +15,7 @@ xbps-install glfw-wayland glew libglvnd #  nvidia340-libs
 xbps-install qt5-core gtk+3
 
 # wayfire
-xbps-install wayfire wcm  
+xbps-install wayfire wcm
 xbps-install swaylock swaybg swayidle wlogout sway-audio-idle-inhibit
 xbps-install qt5-wayland kwayland xorg-server-xwayland # weston-xwayland
 xbps-install wlr-randr wdisplays # kanshi
@@ -23,14 +23,14 @@ xbps-install wlr-randr wdisplays # kanshi
 xbps-install Waybar
 
 # tools
-xbps-install foot rofi mpv Thunar
+xbps-install foot rofi wofi Thunar mpv
 
 # theme
 xbps-install lxappearance qt5-svg qt5ct qt5-styleplugins papirus-icon-theme # xsettingsd
 
 # system tools
 xbps-install pulseaudio pavucontrol #volctl light
-# thunar-archive-plugin file-roller 
+# thunar-archive-plugin file-roller
 ##########################################################
 
 xbps-install libevdev  # KeyboardState module
@@ -76,7 +76,7 @@ ln -s /etc/sv/greetd /var/service/
 gpasswd -a _greeter _seatd
 gpasswd -a _greeter dbus
 gpasswd -a _greeter input
-
+(echo '/bin/sh') | chsh _greeter
 
 # tuigreet ──────────────────────────────────────────
 # xbps-install tuigreet
@@ -92,32 +92,7 @@ gpasswd -a _greeter input
 # EOF
 
 # wlgreet ──────────────────────────────────────────
-cp /home/$username/.config/0-root.tmp/bin/wlgreet_x86       /bin/wlgreet
-cp /home/$username/.config/0-root.tmp/bin/wayfire-start.sh  /bin/wayfire-start
-chmod +x /bin/wlgreet
-chmod +x /bin/wayfire-start
-
-cat > /etc/greetd/config.toml <<EOF
-[terminal]
-vt = 7
-
-[default_session]
-command = "wayfire -c /etc/greetd/wayfire.ini"
-user = "_greeter"
-EOF
-
-cat > /etc/greetd/wayfire.ini <<EOF
-[autostart]
-autostart_wf_shell = false
-wlgreet = /usr/bin/wlgreet --command /bin/wayfire-start
-#qtgreet = /usr/bin/qtgreet
-
-[core]
-plugins = autostart
-vheight = 1
-vwidth = 1
-xwayland = false
-EOF
+# use 3.greet-make to compile and config wlgreet
 
 # set environment
 # 在wayfire启动脚本中修改
@@ -128,7 +103,7 @@ EOF
 # echo "export ELM_DISPLAY=wl"                >> /etc/environment   # EFL-based
 # echo "export SDL_VIDEODRIVER=wayland"       >> /etc/environment   # SDL-based
 # echo "export GDK_BACKEND=wayland"           >> /etc/environment   # GDK-based
-# echo "export CLUTTER_BACKEND=wayland"       >> /etc/environment   # 
+# echo "export CLUTTER_BACKEND=wayland"       >> /etc/environment   #
 # echo "export MOZ_ENABLE_WAYLAND=1"          >> /etc/environment   # Wayland firefox
 # # Session
 # echo "export XDG_SESSION_TYPE=wayland"      >> /etc/environment
