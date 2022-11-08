@@ -44,10 +44,13 @@ $CARGO_HOME/bin/cargo build --release
 sudo cp target/release/wlgreet /usr/local/bin/
 
 # configration ──────────────────────────────────────────
-cp /home/$username/.config/0-root.tmp/bin/wayfire-start.sh       /bin/wayfire-start
-cp /home/$username/.config/0-root.tmp/bin/wayfire-start-greet.sh /bin/wayfire-start-greet
-chmod +x /bin/wayfire-start
-chmod +x /bin/wayfire-start-greet
+sudo cp /home/$username/.config/0-root.tmp/bin/wlgreet_x86            /bin/wlgreet
+sudo cp /home/$username/.config/0-root.tmp/bin/wayfire-start.sh       /bin/wayfire-start
+sudo cp /home/$username/.config/0-root.tmp/bin/wayfire-start-greet.sh /bin/wayfire-start-greet
+
+sudo chmod +x /bin/wlgreet
+sudo chmod +x /bin/wayfire-start
+sudo chmod +x /bin/wayfire-start-greet
 
 sudo mkdir -p /usr/share/wallpapers
 sudo cp /home/$username/.config/wallpapers/swaylock2.jpg /usr/share/wallpapers/bg.jpg

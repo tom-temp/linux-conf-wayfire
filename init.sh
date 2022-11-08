@@ -22,6 +22,9 @@ ln -s ~/.config/.local/share/fonts ~/.local/share/fonts
 rm -rf ~/.local/share/themes
 ln -s ~/.config/.local/share/themes ~/.local/share/themes
 
+cd ~/.local/share/themes
+tar -xf Orchis.tar.xz
+tar -xf Orchis-Purple.tar.xz
 # sudo
 # cursors & sddm  ─────────────────────────────────
 mkdir ~/.tmp
@@ -31,13 +34,11 @@ sudo cp -r  ~/.tmp/Graphite-cursors/*/dist-dark  /usr/share/icons/Graphite-dark-
 # echo 'export XCURSOR_PATH=/usr/share/icons:~/.local/share/icons' >> /etc/environment
 
 
-
-
-
-[Desktop Entry]
-Name=Wayfire
-Exec=wayfire
-TryExec=/opt/wayfire-start.sh
-Icon=
-Type=Application
-DesktopNames=Wayfire
+# Desktop Entry  ─────────────────────────────────
+# [Desktop Entry]
+# Name=Wayfire
+# Exec=wayfire
+# TryExec=/opt/wayfire-start.sh
+# Icon=
+# Type=Application
+# DesktopNames=Wayfire
