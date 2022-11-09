@@ -94,6 +94,21 @@ gpasswd -a _greeter input
 # wlgreet ──────────────────────────────────────────
 # use 3.greet-make to compile and config wlgreet
 
+# swaylock for single user ──────────────────────────────────────────
+
+cp /home/$username/.config/0-root.tmp/bin/wayfire-start.sh       /bin/wayfire-start
+chmod +x /bin/wayfire-start
+cat > /etc/greetd/config.toml <<EOF
+[terminal]
+vt = 7
+
+[default_session]
+command = "/bin/wayfire-start"
+user = "$username"
+EOF
+
+chpst -u $username sed -i  '/autostart]/a\swaystart = swaylock -C ~/.config/sway/swaylock.config' /home/$username/.config/wayfire.ini
+
 # set environment
 # 在wayfire启动脚本中修改
 ##########################################
