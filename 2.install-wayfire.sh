@@ -30,6 +30,7 @@ xbps-install lxappearance qt5-svg qt5ct qt5-styleplugins papirus-icon-theme # xs
 
 # system tools
 xbps-install pulseaudio pavucontrol #volctl light
+xbps-install libappindicator # systary
 # thunar-archive-plugin file-roller
 ##########################################################
 

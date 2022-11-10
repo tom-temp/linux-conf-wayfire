@@ -1,3 +1,3 @@
 //@theme "/home/void/.config/rofi/themes/squared-everforest.rasi"
 //@theme "/home/void/.config/rofi/themes/catppuccin-frappe.rasi"
-@theme "/home/void/.config/rofi/themes/squared-everforest.rasi"
+@theme "~/.config/rofi/themes/squared-everforest.rasi"

@@ -24,7 +24,7 @@
   ],
   "custom/launcher": {
     "format": "",
-    "on-click": "~/.config/rofi/launcher.sh",
+    "on-click": "wofi",
     "tooltip": false
   },
   "temperature": {
@@ -35,8 +35,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "🌞  A",
-      "deactivated": "🌘  S"
+      "activated": "🌞 A",
+      "deactivated": "🌘 S"
     },
     "tooltip": false
   },
@@ -64,7 +64,7 @@
   },
   // middle
   "clock": {
-    "on-click": "~/.config/waybar/switch_style1.sh &",
+    "on-click": "~/.config/rofi/2-launcher-m.sh &",
     "on-click-right": "~/.config/waybar/wallpaper_random.sh &",
     "on-click-middle": "~/.config/waybar/live_wallpaper.sh &",
     "interval": 1,
@@ -85,7 +85,7 @@
   },
   "pulseaudio": { //看视频，又蓝牙配置
     "scroll-step": 1,
-    "format": "{icon} {volume}%", 
+    "format": "{icon} {volume}%",
     "format-muted": "婢 Muted",
     "format-icons": {
       "default": ["", "", ""]
